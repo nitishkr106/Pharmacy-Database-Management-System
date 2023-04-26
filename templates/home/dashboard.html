@@ -1,0 +1,297 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Medical Store - Dashboard</title>
+	<link href="{% static "bootstrap/bootstrap.min.css" %} " rel="stylesheet">
+	<link href="{% static "bootstrap/font-awesome.min.css" %} " rel="stylesheet">
+	
+	<link href="{% static "css/dashboard.css" %} " rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif] -->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="/"><span>SHILPA </span>Medical Store</a>
+				
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">OWNER</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	
+			
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+		
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-database color-blue"></em>
+							<div class="large">{{total_sales}}</div>
+							<div class="text-muted">Total Sales</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-list color-grey"></em>
+							<div class="large">{{total_comps}}</div>
+							<div class="text-muted">Total Companies</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-medkit color-orange"></em>
+							<div class="large">{{total_prods}}</div>
+							<div class="text-muted">Total Products</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+							<div class="large">{{total_patients}}</div>
+							<div class="text-muted">Total Patients</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+		</div>
+
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-phone-square color-teal"></em>
+							<div class="large">{{total_conts}}</div>
+							<div class="text-muted">Total Contacts</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-user-circle-o color-blue"></em>
+							<div class="large">{{total_emps}}</div>
+							<div class="text-muted">Total Employees</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-list-ol color-grey"></em>
+							<div class="large">{{total_supps}}</div>
+							<div class="text-muted">Total Suppliers</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+					<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fa fa-xl fa fa-file-text-o color-red"></em>
+							<div class="large">{{total_suppins}}</div>
+							<div class="text-muted">Total Supplier Invoices</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Sales Overview
+
+	                    <!-- <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+	                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+	                      <span>December 30, 2014 - January 28, 2015</span> 
+	                      <b class="caret"></b>
+	                    </div> 
+						
+						<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+	                -->
+
+	                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 0px 10px; border: 1px solid #ccc; ">
+						    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+						    <span>December 30, 2014 - January 28, 2015</span> <i class="fa fa-caret-down"></i>
+						</div>
+
+					</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper">
+							<canvas id="myChart" width="400" height="150"></canvas>
+								<script>
+								var ctx = document.getElementById('myChart').getContext('2d');
+								var myChart = new Chart(ctx, {
+								    type: 'bar',
+								    data: {
+								        labels: ['June 8', 'June 9', 'June 10', 'June 11', 'June 12', 'June 13', 'June 14'],
+								        datasets: [{
+								            label: 'Total Sales',
+								            data: [12, 19, 3, 5, 2, 3, 24],
+								            backgroundColor: [
+								                'rgba(255, 99, 132, 0.2)',
+								                'rgba(54, 162, 235, 0.2)',
+								                'rgba(255, 206, 86, 0.2)',
+								                'rgba(75, 192, 192, 0.2)',
+								                'rgba(153, 102, 255, 0.2)',
+								                'rgba(255, 159, 64, 0.2)',
+								                'rgba(108, 123, 64, 0.2)'
+								            ],
+								            borderColor: [
+								                'rgba(255, 99, 132, 1)',
+								                'rgba(54, 162, 235, 1)',
+								                'rgba(255, 206, 86, 1)',
+								                'rgba(75, 192, 192, 1)',
+								                'rgba(153, 102, 255, 1)',
+								                'rgba(255, 159, 64, 1)',
+								                'rgba(108, 123, 64, 1)'
+								            ],
+								            borderWidth: 1
+								        }]
+								    },
+								    options: {
+								        scales: {
+								            y: {
+								                beginAtZero: true
+								            }
+								        }
+								    }
+								});
+								</script>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--/.row-->
+		
+		
+			<div class="col-sm-12">
+				<p class="back-link"> Designed by <a href="#">Students of KLETECH</a></p>
+			</div>
+		</div><!--/.row-->
+	</div>	<!--/.main
+
+	<script src="{% static "home/js/bootstrap-datepicker.js" %} "></script>
+	
+	-->
+	
+	<script src="{% static "js/jquery-1.11.1.min.js" %} "></script>
+	<script src="{% static "js/bootstrap.min.js" %} "></script>
+	<script src="{% static "js/chart.min.js" %} "></script>
+	<script src="{% static "js/chart-data.js" %} "></script>
+	<script src="{% static "js/easypiechart.js" %} "></script>
+	<script src="{% static "js/easypiechart-data.js" %} "></script>
+	<script src="{% static "js/daterangepicker.js" %} "></script>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script src="{% static "js/custom.js" %} "></script>
+	
+
+	<script>
+
+	window.onload = function () {
+		var chart1 = document.getElementById("line-chart").getContext("2d");
+		window.myLine = new Chart(chart1).Line(lineChartData, {
+			responsive: true,
+			scaleLineColor: "rgba(0,0,0,.2)",
+			scaleGridLineColor: "rgba(0,0,0,.05)",
+			scaleFontColor: "#c5c7cc"
+		});
+	};
+
+	// Daterangepicker 
+
+	$(function() {
+
+	    var start = moment().subtract(29, 'days');
+	    var end = moment();
+
+	    function cb(start, end) {
+	        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+	    }
+
+	    $('#reportrange').daterangepicker({
+	        startDate: start,
+	        endDate: end,
+	        ranges: {
+	           'Today': [moment(), moment()],
+	           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+	           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+	           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+	           'This Month': [moment().startOf('month'), moment().endOf('month')],
+	           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	        }
+	    }, cb);
+
+	    cb(start, end);
+
+	});
+
+
+	// === include 'setup' then 'config' above ===
+
+	  var myChart = new Chart(
+	    document.getElementById('myChart'),
+	    config
+	  );
+
+	</script>
+		
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends 'basic.html' %}
+{% block body %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% if user.is_authenticated %}
+<div class="col-md-7 offset-md-2">
+ <h3 class="text-center">List Of Employees</h3>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Years of Experience</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for employee in employees %}
+    <tr>
+      <th scope="row">{{employee.id}}</th>
+      <td>{{employee.name}}</td>
+      <td>{{employee.years_of_exp}}</td>
+      <td>{{employee.phone}}</td>
+      <td>{{employee.salary}}</td>
+      <td><a href="/empedit/{{employee.id}}/"><button class="btn btn-primary btn-sm">Edit</button></a></td>
+      <td>
+        <form action="{% url 'home:delete_emp' employee.id %}" method="post">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-primary btn-sm" value="Delete">
+        </form>
+      </td>  
+        {# <a href="#"><button class="btn btn-primary btn-sm">Delete</button></a></td> #}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+
+<!-- background:
+        url('/static/images/map1.jpg');
+      background-size: 1500px 805px; -->
+<body style="
+      width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/static/images/bg2.jpg');
+    background-size: cover; 
+    font-family: 'Roboto', sans-serif;
+      
+    ">
+{% else %}
+<h2>Please Log in to Create a Post</h2>
+{% endif %}
+{% endblock body %}
